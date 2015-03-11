@@ -44,8 +44,14 @@ body, html {
 
 .summonerDisplay {
   display:block;
-  max-width:960px;
-  width:100%;
+  width:35%;
+  margin: 0 auto;
+  background-color: #000;
+  border-radius: 4px;
+}
+
+.summonerDisplay h1 {
+  text-align: center;
   margin: 0 auto;
 }
 

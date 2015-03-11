@@ -1,0 +1,24 @@
+{
+  "name": "LoL-API",
+  "version": "0.0.1",
+  "description": "A small ReactJS app using the LoL API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/themcstaplez/lol-api-react.git"
+  },
+  "author": "Matthew McKey <mc@staplez.io> (http://staplez.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/themcstaplez/lol-api-react/issues"
+  },
+  "homepage": "https://github.com/themcstaplez/lol-api-react",
+  "devDependencies": {
+    "gulp": "~3.8.11",
+    "react": "~0.12.2",
+    "browserify": "~9.0.3"
+  }
+}

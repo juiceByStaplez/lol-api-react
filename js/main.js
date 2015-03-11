@@ -19,10 +19,9 @@ var LeagueSearch = React.createClass({
     return (
       <div className="leagueSearch">
       <form onSubmit={this.handleSubmit}>
-        <input type="text" ref="summonerName" placeholder="Enter summoner name.." />
+        <input type="text" ref="summonerName" placeholder="Enter summoner name.." defaultValue="godsgodgg" />
         <input type="submit" value="Search" />
       </form>
-      <SummonerDisplay data={this.state} />
       <GameList games={this.state.games} champions={this.state.champions}/>
       </div>
     );
@@ -58,8 +57,7 @@ var LeagueSearch = React.createClass({
           summonerName = summonerName.toLowerCase().split(' ').join('');
           var summonerId = data[summonerName].id;
           var styledName = data[summonerName].name;
-          this.setState({summonerId: summonerId});
-          this.setState({summonerName: styledName});
+          this.setState({summonerId: summonerId, summonerName: styledName});
           this.getGamesById(summonerId);
         }.bind(this)
       });
@@ -67,7 +65,7 @@ var LeagueSearch = React.createClass({
   getGamesById: function  (summonerId) {
     var gameVersion = 'v1.3';
     var gamePath = 'game/by-summoner/'+summonerId+'/recent';
-    var url = 'https://'+region+'.api.pvp.net/api/lol/'+region+'/'+gameVersion+'/'+gamePath;
+    var url = `https://${region}.api.pvp.net/api/lol/${region}/${gameVersion}/${gamePath}`;
     $.ajax({
       url: url,
       dataType: 'json',
@@ -82,16 +80,6 @@ var LeagueSearch = React.createClass({
 
 });
 
-var SummonerDisplay = React.createClass({
-  render: function  () {
-    return (
-      <div className="summonerDisplay">
-        <h1>{this.props.data.summonerName}</h1> - <h1>{this.props.data.summonerId}</h1>
-      </div>
-    );
-  }
-});
-
 var GameList = React.createClass({
   render: function  () {
     var self = this;
@@ -104,10 +92,6 @@ var GameList = React.createClass({
         })}
       </div>
     );
-  },
-  getChampionById: function(champId) {
-    var champions = this.props.champions;
-    console.log(champions);
   }
 });
 
@@ -134,7 +118,7 @@ var Game = React.createClass({
       <div className={"game "+this.state.win } >
         <div className={"champicon-wrapper"}>
           <div className={"champicon "+ this.state.champSprite.replace('.png', '')} style={backgroundStyles}></div>
-          <small>Fizz</small>
+          <small>{this.state.championName}</small>
         </div>
         <div className={"stat-wrapper"} >
         <span>K/D/A:</span><small> {this.state.kills} / {this.state.assists} / {this.state.deaths}</small>
@@ -170,4 +154,3 @@ React.render(
   <LeagueSearch />,
   document.getElementById('content')
 );
-
