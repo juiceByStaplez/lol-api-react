@@ -137,8 +137,8 @@ var Game = React.createClass({
           <small>{this.state.championName}</small>
         </div>
         <div className={"stat-wrapper"} >
-        K/D/A: <small> {this.state.kills} / {this.state.deaths} / {this.state.assists}</small>
         <ItemList items={this.state.items} />
+        K/D/A: <small> {this.state.kills} / {this.state.deaths} / {this.state.assists}</small>
         </div>
       </div>
     );

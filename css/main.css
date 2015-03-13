@@ -84,6 +84,7 @@
 .champicon-wrapper {
   width:60px;
   float:left;
+  padding-top:10px;
 }
 
 .champicon-wrapper small {
