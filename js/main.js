@@ -4,7 +4,7 @@ var version = 'v1.4';
 var staticVersion = 'v1.2';
 var path = 'summoner/by-name/';
 var champPath = 'champion';
-var staticUrl = 'https://global.api.pvp.net/api/lol/static-data/'+region+'/'+staticVersion+'/'+champPath;
+var staticUrl = 'https://global.api.pvp.net/api/lol/static-data/'+region+'/'+staticVersion+'/';
 
 var LeagueSearch = React.createClass({
   getInitialState: function  () {
@@ -12,7 +12,8 @@ var LeagueSearch = React.createClass({
       summonerId: '',
       summonerName: '',
       games: [],
-      champions: []
+      champions: [],
+      itemData: []
     }
   },
   render: function  () {
@@ -22,13 +23,13 @@ var LeagueSearch = React.createClass({
         <input type="text" ref="summonerName" placeholder="Enter summoner name.." defaultValue="godsgodgg" />
         <input type="submit" value="Search" />
       </form>
-      <GameList games={this.state.games} champions={this.state.champions}/>
+      <GameList games={this.state.games} champions={this.state.champions} itemData={this.state.itemData}/>
       </div>
     );
   },
   componentDidMount: function  () {
     $.ajax({
-      url: staticUrl,
+      url: staticUrl+champPath,
       dataType: 'json',
       data: {
         champData: 'image',
@@ -38,6 +39,19 @@ var LeagueSearch = React.createClass({
       type: 'GET',
       success: function  (data) {
         this.setState({champions: data.data});
+      }.bind(this)
+    });
+    $.ajax({
+      url: staticUrl+'item',
+      dataType: 'json',
+      data: {
+        api_key: key,
+        locale: 'en_US',
+        itemListData: 'all'
+      },
+      type: 'GET',
+      success: function  (data) {
+        this.setState({itemData: data.data});
       }.bind(this)
     });
   },
@@ -87,7 +101,7 @@ var GameList = React.createClass({
       <div className="game-list">
         {this.props.games.map(function(game, index) {
           return (
-            <Game game={game} key={index} champions={self.props.champions} />
+            <Game game={game} key={index} champions={self.props.champions} itemData={self.props.itemData}/>
           );
         })}
       </div>
@@ -107,7 +121,9 @@ var Game = React.createClass({
       win: '',
       kills: '',
       assists: '',
-      deaths: ''
+      deaths: '',
+      items: [],
+      itemData: this.props.itemData
     }
   },
   render: function  () {
@@ -121,7 +137,8 @@ var Game = React.createClass({
           <small>{this.state.championName}</small>
         </div>
         <div className={"stat-wrapper"} >
-        <span>K/D/A:</span><small> {this.state.kills} / {this.state.assists} / {this.state.deaths}</small>
+        K/D/A: <small> {this.state.kills} / {this.state.deaths} / {this.state.assists}</small>
+        <ItemList items={this.state.items} />
         </div>
       </div>
     );
@@ -133,6 +150,7 @@ var Game = React.createClass({
     this.getChampionById(nextProps.game.championId);
   },
   getChampionById: function  (champId) {
+    var self = this;
     var champion = this.state.champions[champId].name;
     var champSprite = this.state.champions[champId].image.sprite;
     var champX = this.state.champions[champId].image.x;
@@ -141,12 +159,58 @@ var Game = React.createClass({
     var kills = this.props.game.stats.championsKilled;
     var assists = this.props.game.stats.assists;
     var deaths = this.props.game.stats.numDeaths;
+    var itemArray = [this.props.game.stats.item0, this.props.game.stats.item1, this.props.game.stats.item2, this.props.game.stats.item3, this.props.game.stats.item4, this.props.game.stats.item6];
+    var items = [];
+    itemArray.map(function  (item, index) {
+      if(item === undefined) {
+        console.log('fuck');
+      } else {
+        itemObj = {
+          id: self.state.itemData[item].id,
+          name: self.state.itemData[item].name,
+          plaintext: self.state.itemData[item].plaintext,
+          image: {
+            sprite: self.state.itemData[item].image.sprite,
+            x: self.state.itemData[item].image.x,
+            y: self.state.itemData[item].image.y,
+          }
+        }
+        items.push(itemObj);
+      }
+    });
     if(win == true) {
       win = 'won';
     } else {
       win = 'lost';
     }
-    this.setState({championName: champion, champSprite: champSprite, championX: champX, championY: champY, win: win, kills: kills, assists: assists, deaths: deaths});
+    this.setState({championName: champion, champSprite: champSprite, championX: champX, championY: champY, win: win, kills: kills, assists: assists, deaths: deaths, items: items});
+  }
+});
+
+var ItemList = React.createClass({
+  render: function  () {
+    var self = this;
+    return (
+      <div className="item-list">
+        {this.props.items.map(function(item, index) {
+          return (
+            <Item item={item} key={index} />
+          );
+        })}
+      </div>
+    );
+  }
+});
+
+var Item = React.createClass({
+  render: function() {
+    var backgroundStyles = {
+      backgroundPosition: '-'+this.props.item.image.x+'px -'+ this.props.item.image.y+'px'
+    };
+    return (
+      <div className={"itemicon "+this.props.item.image.sprite.replace('.png', '')} style={backgroundStyles}>
+      </div>
+      );
   }
 });
 
