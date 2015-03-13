@@ -1,6 +1,6 @@
 .leagueSearch {
   display:block;
-  max-width:960px;
+  max-width:1124px;
   width:100%;
   margin: 0 auto;
   background-color:#ccc;
@@ -136,7 +136,7 @@
 
 .item-list {
   float:left;
-  width: 390px;
+  width: 455px;
   height: 94%;
   border-left: 2px solid rgba(102, 102, 102, 0.5);
   margin-left: 5px;

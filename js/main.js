@@ -159,7 +159,7 @@ var Game = React.createClass({
     var kills = this.props.game.stats.championsKilled;
     var assists = this.props.game.stats.assists;
     var deaths = this.props.game.stats.numDeaths;
-    var itemArray = [this.props.game.stats.item0, this.props.game.stats.item1, this.props.game.stats.item2, this.props.game.stats.item3, this.props.game.stats.item4, this.props.game.stats.item6];
+    var itemArray = [this.props.game.stats.item0, this.props.game.stats.item1, this.props.game.stats.item2, this.props.game.stats.item3, this.props.game.stats.item4, this.props.game.stats.item5, this.props.game.stats.item6];
     var items = [];
     itemArray.map(function  (item, index) {
       if(item === undefined) {
