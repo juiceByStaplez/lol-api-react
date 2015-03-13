@@ -1,5 +1,7 @@
-#content {
+body {
   background-color: #87CEFA;
+}
+#content {
   padding:10px;
 
 }
