@@ -167,6 +167,7 @@ var Game = React.createClass({
           id: '',
           name: '',
           plaintext: '',
+          description: '',
           image: {
             sprite: 'empty_item',
             x: 0,
@@ -178,6 +179,7 @@ var Game = React.createClass({
           id: self.state.itemData[item].id,
           name: self.state.itemData[item].name,
           plaintext: self.state.itemData[item].plaintext,
+          description: self.state.itemData[item].sanitizedDescription,
           image: {
             sprite: self.state.itemData[item].image.sprite,
             x: self.state.itemData[item].image.x,
@@ -218,6 +220,9 @@ var Item = React.createClass({
     };
     return (
       <div className={"itemicon "+this.props.item.image.sprite.replace('.png', '')} style={backgroundStyles}>
+      <div className={"tooltip"} >
+        {this.props.item.description}
+      </div>
       </div>
       );
   }

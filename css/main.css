@@ -165,6 +165,26 @@
   border:1px solid rgba(0,0,0,0.8);
 }
 
+.itemicon .tooltip {
+  opacity:0;
+  -webkit-transition: all 500ms cubic-bezier;
+  -o-transition: all 500ms cubic-bezier;
+  transition: all 500ms cubic-bezier;
+  display:block;
+  width:170px;
+  font-size:12px;
+  background:#666;
+  position:relative;
+  padding:10px 5px;
+  border-radius:4px;
+  border:2px solid rgba(0,0,0,0.11);
+}
+
+.itemicon:hover .tooltip {
+  opacity:1;
+}
+
+
 .item0 {
   background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/item0.png');
 }
