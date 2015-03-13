@@ -163,7 +163,16 @@ var Game = React.createClass({
     var items = [];
     itemArray.map(function  (item, index) {
       if(item === undefined) {
-        console.log('fuck');
+        itemObj = {
+          id: '',
+          name: '',
+          plaintext: '',
+          image: {
+            sprite: 'empty_item',
+            x: 0,
+            y: 0
+          }
+        }
       } else {
         itemObj = {
           id: self.state.itemData[item].id,
@@ -175,8 +184,8 @@ var Game = React.createClass({
             y: self.state.itemData[item].image.y,
           }
         }
-        items.push(itemObj);
       }
+      items.push(itemObj);
     });
     if(win == true) {
       win = 'won';
