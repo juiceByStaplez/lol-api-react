@@ -1,5 +1,6 @@
 var React = require('react');
 var config = require('../config/config');
+var api_key = require('../config/api_key').key;
 
 var FilterList = require('./FilterList');
 var GameList = require('./GameList');
@@ -33,7 +34,7 @@ var LeagueSearch = React.createClass({
       data: {
         champData: 'image',
         dataById: true,
-        api_key: config.key
+        api_key: api_key
       },
       type: 'GET',
       success: function  (data) {
@@ -44,7 +45,7 @@ var LeagueSearch = React.createClass({
       url: `${config.staticUrl}/${config.region}/${config.staticVersion}/item`,
       dataType: 'json',
       data: {
-        api_key: config.key,
+        api_key: api_key,
         locale: 'en_US',
         itemListData: 'all'
       },
@@ -63,7 +64,7 @@ var LeagueSearch = React.createClass({
         url: url+summonerName,
         dataType: 'json',
         data: {
-          api_key: config.key,
+          api_key: api_key,
         },
         success: function  (data) {
           var self = this;
@@ -83,7 +84,7 @@ var LeagueSearch = React.createClass({
       url: url,
       dataType: 'json',
       data: {
-        api_key: config.key
+        api_key: api_key
       },
       success: function  (data) {
         this.setState({games: data.games});
