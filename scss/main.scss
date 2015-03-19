@@ -64,12 +64,12 @@ body {
     transition: color .3s ease-in-out;
     transition: border .3s ease-in-out;
     padding: 0 0 5px;
-  }
-  &.won {
-    border:2px solid rgba(0, 128, 0, .8);
-  }
-  &.lost {
-    border:2px solid rgba(255, 0, 0, .8);
+    &.won {
+      border:2px solid rgba(0, 128, 0, .8);
+    }
+    &.lost {
+      border:2px solid rgba(255, 0, 0, .8);
+    }
   }
   &:hover {
     color:$white;

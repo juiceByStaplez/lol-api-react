@@ -31,16 +31,20 @@ var Game = React.createClass({
           <small>{this.state.championName}</small>
         </div>
         <div className={"stat-wrapper"} >
-        <ItemList items={this.state.items} />
-        K/D/A: <small> {this.state.kills} / {this.state.deaths} / {this.state.assists}</small>
+          <ItemList items={this.state.items} />
+          K/D/A: <small> {this.state.kills} / {this.state.deaths} / {this.state.assists}</small>
         </div>
       </div>
     );
   },
   componentWillMount: function  () {
+    this.setItems(this.props.game);
+    this.setStats(this.props.game);
     this.getChampionById(this.state.championId);
   },
   componentWillReceiveProps: function  (nextProps) {
+    this.setItems(nextProps.game);
+    this.setStats(nextProps.game);
     this.getChampionById(nextProps.game.championId);
   },
   getChampionById: function  (champId) {
@@ -49,17 +53,13 @@ var Game = React.createClass({
     var champSprite = this.state.champions[champId].image.sprite;
     var champX = this.state.champions[champId].image.x;
     var champY = this.state.champions[champId].image.y;
-    var win = this.props.game.stats.win;
-    var kills = this.props.game.stats.championsKilled;
-    var assists = this.props.game.stats.assists;
-    var deaths = this.props.game.stats.numDeaths;
-    var itemArray = [this.props.game.stats.item0, this.props.game.stats.item1, this.props.game.stats.item2, this.props.game.stats.item3, this.props.game.stats.item4, this.props.game.stats.item5, this.props.game.stats.item6];
+
+    this.setState({championName: champion, champSprite: champSprite, championX: champX, championY: champY});
+  },
+  setItems: function  (game) {
+    var self = this;
     var items = [];
-    if(win == true) {
-      win = 'won';
-    } else {
-      win = 'lost';
-    }
+    var itemArray = [game.stats.item0, game.stats.item1, game.stats.item2, game.stats.item3, game.stats.item4, game.stats.item5, game.stats.item6 ];
     itemArray.map(function  (item, index) {
       if(item === undefined) {
         itemObj = {
@@ -88,7 +88,17 @@ var Game = React.createClass({
       }
       items.push(itemObj);
     });
-    this.setState({championName: champion, champSprite: champSprite, championX: champX, championY: champY, win: win, kills: kills, assists: assists, deaths: deaths, items: items});
+    this.setState({items: items});
+  },
+  setStats: function  (game) {
+    var self = this;
+    var kills = game.stats.championsKilled;
+    var assists = game.stats.assists;
+    var deaths = game.stats.numDeaths;
+    var win = game.stats.win;
+
+    win ? win = 'won' : win = 'lost';
+    this.setState({kills: kills, assists: assists, deaths: deaths, win: win });
   }
 });
 

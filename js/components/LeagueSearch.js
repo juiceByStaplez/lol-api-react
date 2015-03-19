@@ -70,8 +70,8 @@ var LeagueSearch = React.createClass({
           summonerName = summonerName.toLowerCase().split(' ').join('');
           var summonerId = data[summonerName].id;
           var styledName = data[summonerName].name;
-          this.setState({summonerId: summonerId, summonerName: styledName});
           this.getGamesById(summonerId);
+          this.setState({summonerId: summonerId, summonerName: styledName});
         }.bind(this)
       });
   },
