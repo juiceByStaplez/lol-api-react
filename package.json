@@ -2,9 +2,9 @@
   "name": "LoL-API",
   "version": "0.0.1",
   "description": "A small ReactJS app using the LoL API, and such.",
-  "main": "index.js",
+  "main": "js/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "watchify -o js/bundle.js -v -d ."
   },
   "repository": {
     "type": "git",
@@ -16,9 +16,25 @@
     "url": "https://github.com/themcstaplez/lol-api-react/issues"
   },
   "homepage": "https://github.com/themcstaplez/lol-api-react",
+  "dependencies": {
+    "react": "0.13.0"
+  },
   "devDependencies": {
+    "browserify": "~6.2.0",
+    "envify": "~3.0.0",
+    "reactify": "^0.15",
+    "watchify": "~2.4.0",
     "gulp": "~3.8.11",
-    "react": "~0.12.2",
-    "browserify": "~9.0.3"
+    "gulp-sass": "~1.3.3",
+    "vinyl-source-stream": "~1.1.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-notify": "~2.2.0",
+    "gulp-util": "~3.0.4",
+    "gulp-react": "~3.0.1"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
   }
 }

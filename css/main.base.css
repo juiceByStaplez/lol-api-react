@@ -1,0 +1,202 @@
+body {
+  background-color: #87CEFA;
+  font-family: 'Open Sans', sans-serif;
+}
+#content {
+  padding:10px;
+
+}
+
+.leagueSearch {
+  display:block;
+  max-width:1124px;
+  width:100%;
+  margin: 0 auto;
+  background-color:#fff;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding:10px;
+}
+
+.leagueSearch form {
+  max-width: 35%;
+  margin: 0 auto;
+}
+
+.leagueSearch input[type="text"] {
+  width: 240px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  border: rgba(0,0,0,.25);
+  margin: 6px 0;
+  color:#666;
+  background-color: #ccc;
+  transition: all 300ms;
+}
+
+.leagueSearch input[type="submit"] {
+  margin-left:5px;
+}
+.leagueSearch h1 {
+  color: #666;
+}
+
+
+.game-list {
+  width:100%;
+  margin:0 auto;
+}
+
+.game-list span {
+}
+
+.summonerDisplay {
+  display:block;
+  width:35%;
+  margin: 0 auto;
+  background-color: #000;
+  border-radius: 4px;
+}
+
+.summonerDisplay h1 {
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+.game {
+  display: inline-block;
+  background-color: #ccc;
+  width: 48%;
+  background-position: 0px 0px;
+  margin: 5px;
+  color:white;
+  text-align: center;
+  font-size: 11px;
+  border:2px solid transparent;
+  -webkit-transition: color .3s ease-in-out;
+  -o-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+  transition: border .3s ease-in-out;
+  padding: 0px 0 5px;;
+}
+
+.game.won {
+  border:2px solid rgba(0, 128, 0, .8);
+}
+
+.game.lost {
+  border:2px solid rgba(255, 0, 0, .8);
+}
+
+.game:hover {
+  color: #fff;
+}
+
+.champicon-wrapper {
+  width:60px;
+  float:left;
+  padding-top:10px;
+}
+
+.champicon-wrapper small {
+  text-align: center;
+  background-color: black;
+  width:96%;
+  display:block;
+  float:left;
+  margin:5px;
+  padding:3px 0;
+
+}
+
+.champicon {
+  width: 49px;
+  height: 18px;
+  background-position: 0px 0px;
+  padding-top: 30px;
+  display:block;
+  margin:5px 5px 5px 9px;
+  float:left;
+}
+
+.stat-wrapper {
+  float:left;
+  width: 390px;
+  height: 78px;
+  border-left: 2px solid rgba(102, 102, 102, 0.5);
+  margin-left: 5px;
+  margin-top: 15px;
+}
+
+.champion0 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/champion0.png');
+}
+
+.champion1 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/champion1.png');
+}
+.champion2 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/champion2.png');
+}
+
+.champion3 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/champion3.png');
+}
+
+.champion4 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/champion4.png');
+}
+
+.item-list {
+  float:left;
+  width: 455px;
+  margin-left: 5px;
+}
+
+.itemicon {
+  width: 49px;
+  height: 18px;
+  background-position: 0px 0px;
+  padding-top: 30px;
+  display:block;
+  margin:0px 5px 5px 3px;
+  float:left;
+  border:1px solid rgba(0,0,0,0.8);
+}
+
+.itemicon .tooltip {
+  opacity:0;
+  -webkit-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+  display:block;
+  width:170px;
+  font-size:12px;
+  background:#666;
+  position:relative;
+  padding:10px 5px;
+  border-radius:4px;
+  border:2px solid rgba(0,0,0,0.11);
+}
+
+.itemicon:hover .tooltip {
+  opacity:1;
+}
+
+
+.item0 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/item0.png');
+}
+.item1 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/item1.png');
+}
+.item2 {
+  background-image: url('http://ddragon.leagueoflegends.com/cdn/5.5.2/img/sprite/item2.png');
+}
+
+.empty_item {
+  background-image: url('http://cdn.replays.io/resources/img/item/0.png');
+  background-size: cover;
+}
