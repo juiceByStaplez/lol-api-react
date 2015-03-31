@@ -16,7 +16,8 @@ body {
   padding: 10px; }
   .leagueSearch form {
     max-width: 35%;
-    margin: 0 auto; }
+    margin: 0 10px 0 auto;
+    display: inline-block; }
   .leagueSearch input[type="text"] {
     width: 240px;
     text-align: center;

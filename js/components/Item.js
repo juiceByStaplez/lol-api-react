@@ -9,7 +9,7 @@ var Item = React.createClass({
     return (
       <div className={"itemicon "+this.props.item.image.sprite.replace('.png', '')} style={backgroundStyles}>
         <div className={"tooltip"} >
-          {this.props.item.description}
+          {this.props.item.name}
         </div>
       </div>
       );

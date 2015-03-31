@@ -25,7 +25,11 @@ body {
   padding:10px;
   & form {
     max-width:35%;
-    margin:0 auto;
+    margin:0 10px 0 auto;
+    display: inline-block;
+  }
+  & select {
+
   }
   & input[type="text"] {
     width: 240px;

@@ -12,18 +12,34 @@ var LeagueSearch = React.createClass({
       summonerName: '',
       games: [],
       champions: [],
-      itemData: []
+      itemData: [],
+      activeGames: [],
     }
   },
   render: function  () {
+    var items = this.state.itemData;
+    var item_choices = [{name: 'Any', id: 'any'}];
+    for(var key in items) {
+      var itemObj = {
+        name: items[key].name,
+        id: items[key].id
+      }
+      item_choices.push(itemObj);
+    }
     return (
       <div className={"leagueSearch"}>
       <form onSubmit={this.handleSubmit}>
         <input type="text" ref="summonerName" placeholder="Enter summoner name.." defaultValue="godsgodgg" />
         <input type="submit" value="Search" />
       </form>
-      <FilterList games={this.state.games} items={this.state.itemData} />
-      <GameList games={this.state.games} champions={this.state.champions} itemData={this.state.itemData}/>
+      <select games={this.state.games} items={this.state.itemData} ref="filterList" onChange={this.filter}>
+      {item_choices.map(function  (item, index) {
+        return (
+          <option value={item.id} key={index}>{item.name}</option>
+        );
+      })}
+      </select>
+      <GameList games={this.state.activeGames} champions={this.state.champions} itemData={this.state.itemData}/>
       </div>
     );
   },
@@ -87,10 +103,24 @@ var LeagueSearch = React.createClass({
         api_key: api_key
       },
       success: function  (data) {
-        this.setState({games: data.games});
+        this.setState({games: data.games, activeGames: data.games});
       }.bind(this)
     });
+  },
+  filter: function  (e) {
+    var value = this.refs.filterList.getDOMNode().value;
+    var activeGames = [];
+    if(value == 'any') {
+      this.getGamesById(this.state.summonerId);
+    } else {
+    for(var key in this.state.games) {
+      if(value == this.state.games[key].stats.item0 || value == this.state.games[key].stats.item1 || value == this.state.games[key].stats.item2 || value == this.state.games[key].stats.item3 || value == this.state.games[key].stats.item4 || value == this.state.games[key].stats.item5 || value == this.state.games[key].stats.item6) {
+        activeGames.push(this.state.games[key]);
+      }
+    }
+    this.setState({activeGames: activeGames});
   }
+ }
 
 });
 
